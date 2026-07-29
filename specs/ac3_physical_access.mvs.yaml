@@ -1,0 +1,948 @@
+name: ac3_physical_access
+connections:
+  target:
+    engine: bigquery
+migration:
+  build_datasets:
+  - raw_billing
+  - gold_analytics
+  steps:
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_ba_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_ba_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_div_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_div_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_fsc_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_fsc_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_hosp_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_hosp_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_lacphy.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_lacphy_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_invoice.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_invoice_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_invoice.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_invoice_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_os.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_os_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_paycode_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_paycode_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_rejection.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_rejection_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_txn.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_txn_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_txn.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_txn_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_linepay.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_linepay_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_loc_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_loc_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_hosp_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_hosp_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_prov_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_prov_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_osar.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_osar_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_patients.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_patients_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_paycode_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_paycode_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_prov_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_prov_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_refphy_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_refphy_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_rejection.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_rejection_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/lac_phy_idx_stg_insurance.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/lac_phy_idx_stg_insurance_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_araccountheader.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_aradjustments.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_ardenial.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_arpayments.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_receivedfiles_metadata.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tbldialeraccountdtl.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tblsubaccount_lacpb.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tbluseractivitynotes_lacpb.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_mh.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_mh_archive.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/araccountheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/aradjustments.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/arcurrentinventory.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/ardenial.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/arpayments.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/billingheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/holdbillheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/tbluseractivitynotes.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmadjustment.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmbillingheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcharges.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcurrentinventory.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcurrentinventorydaywise.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmdenial.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmdenialdetails.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmholdbillheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmkpimonthend.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmoutboundlaccashposting.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmpayment.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmreferrals.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmreferrals_spc_analytics.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmtouchevents.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmtransaction.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmweeklyreport.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/factkpimonthend.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/tb_factkpimonthend.sql
+suites:
+- pattern: schema_conformance
+  id: ac3-raw-billing-physical
+  target_dataset: ${DS_RAW_BILLING}
+  expect_table_count: 60
+  tables:
+  - table: idx_stg_ba_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_ba_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_div_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_div_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_fsc_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_fsc_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_hosp_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_hosp_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_insurance_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_insurance_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_insurance_lacphy
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_insurance_lacphy_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_invoice
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_invoice_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_invoice
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_invoice_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_os
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_os_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_paycode_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_paycode_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_rejection
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_rejection_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_txn
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_mh_txn_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_txn
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_lac_txn_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_linepay
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_linepay_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_loc_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_loc_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_mh_hosp_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_mh_hosp_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_mh_prov_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_mh_prov_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_osar
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_osar_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_patients
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_patients_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_paycode_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_paycode_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_prov_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_prov_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_refphy_dict
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_refphy_dict_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_rejection
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: idx_stg_rejection_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: lac_phy_idx_stg_insurance
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: lac_phy_idx_stg_insurance_archive
+    expect_object_type: TABLE
+    columns:
+    - name: filename
+      type: STRING
+  - table: stg_araccountheader
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: STRING
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+  - table: stg_aradjustments
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: STRING
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+  - table: stg_ardenial
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+  - table: stg_arpayments
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: STRING
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+  - table: stg_receivedfiles_metadata
+    expect_object_type: TABLE
+    columns:
+    - name: createddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: createddate
+  - table: tbldialeraccountdtl
+    expect_object_type: TABLE
+    columns:
+    - name: createddate
+      type: DATETIME
+    partition_by: createddate
+  - table: tblsubaccount_lacpb
+    expect_object_type: TABLE
+    columns:
+    - name: createddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: createddate
+  - table: tbluseractivitynotes_lacpb
+    expect_object_type: TABLE
+    columns:
+    - name: createddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: createddate
+  - table: transactionedits_lacphy
+    expect_object_type: TABLE
+    columns:
+    - name: organizationgroupid
+      type: STRING
+  - table: transactionedits_lacphy_archive
+    expect_object_type: TABLE
+    columns:
+    - name: organizationgroupid
+      type: STRING
+  - table: transactionedits_lacphy_mh
+    expect_object_type: TABLE
+    columns:
+    - name: organizationgroupid
+      type: STRING
+  - table: transactionedits_lacphy_mh_archive
+    expect_object_type: TABLE
+    columns:
+    - name: organizationgroupid
+      type: STRING
+- pattern: schema_conformance
+  id: ac3-gold-analytics-physical
+  target_dataset: ${DS_GOLD_ANALYTICS}
+  expect_table_count: 26
+  tables:
+  - table: araccountheader
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - organizationgroupid
+    - facilityid
+  - table: aradjustments
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - organizationgroupid
+  - table: arcurrentinventory
+    expect_object_type: TABLE
+    columns:
+    - name: postingperiod
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: postingperiod
+    cluster_by:
+    - organizationgroupid
+  - table: ardenial
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - organizationgroupid
+  - table: arpayments
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - organizationgroupid
+  - table: billingheader
+    expect_object_type: TABLE
+    columns:
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - organizationgroupid
+  - table: holdbillheader
+    expect_object_type: TABLE
+    columns:
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: holdbillcreateddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: holdbillcreateddate
+  - table: tbluseractivitynotes
+    expect_object_type: TABLE
+    columns:
+    - name: createddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: createddate
+  - table: dmadjustment
+    expect_object_type: TABLE
+    columns:
+    - name: facilityid
+      type: INT64
+    - name: adjustmentdate
+      type: DATETIME
+    - name: financialclasscode
+      type: STRING
+    - name: placementpayor
+      type: STRING
+    - name: department
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: adjustmentdate
+    cluster_by:
+    - placementpayor
+    - department
+    - financialclasscode
+  - table: dmbillingheader
+    expect_object_type: TABLE
+    columns:
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: primarypayercode
+      type: STRING
+    - name: facilityid
+      type: INT64
+    - name: recordreceiveddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: recordreceiveddate
+    cluster_by:
+    - primarypayercode
+  - table: dmcharges
+    expect_object_type: TABLE
+    columns:
+    - name: financialclasscode
+      type: STRING
+    - name: department
+      type: STRING
+    - name: servicefromdate
+      type: DATETIME
+    - name: placementpayor
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: servicefromdate
+    cluster_by:
+    - financialclasscode
+    - placementpayor
+    - department
+  - table: dmcurrentinventory
+    expect_object_type: TABLE
+    columns:
+    - name: postingperiod
+      type: DATETIME
+    - name: financialclasscode
+      type: STRING
+    - name: primarypayor
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: postingperiod
+    cluster_by:
+    - financialclasscode
+    - primarypayor
+  - table: dmcurrentinventorydaywise
+    expect_object_type: TABLE
+    columns:
+    - name: placementfinancialclass
+      type: STRING
+    - name: placementpayor
+      type: STRING
+    - name: department
+      type: STRING
+    - name: placementdate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: placementdate
+    cluster_by:
+    - placementfinancialclass
+    - placementpayor
+    - department
+  - table: dmdenial
+    expect_object_type: TABLE
+    columns:
+    - name: placementpayor
+      type: STRING
+    - name: placementfinancialclass
+      type: STRING
+    - name: department
+      type: STRING
+    - name: denieddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: denieddate
+    cluster_by:
+    - placementpayor
+    - department
+    - placementfinancialclass
+  - table: dmdenialdetails
+    expect_object_type: TABLE
+    columns:
+    - name: placementpayor
+      type: STRING
+    - name: placementfinancialclass
+      type: STRING
+    - name: department
+      type: STRING
+    - name: denieddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: denieddate
+    cluster_by:
+    - placementpayor
+    - department
+    - placementfinancialclass
+  - table: dmholdbillheader
+    expect_object_type: TABLE
+    columns:
+    - name: billingheaderid
+      type: INT64
+    - name: patientid
+      type: INT64
+    - name: financialclasscode
+      type: STRING
+    - name: holdbillcreateddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: holdbillcreateddate
+    cluster_by:
+    - financialclasscode
+  - table: dmkpimonthend
+    expect_object_type: TABLE
+    columns:
+    - name: invoicecreationperiod
+      type: DATETIME
+    - name: fsctype
+      type: STRING
+    - name: department
+      type: STRING
+    - name: payer
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: invoicecreationperiod
+    cluster_by:
+    - department
+    - payer
+    - fsctype
+  - table: dmoutboundlaccashposting
+    expect_object_type: TABLE
+    columns:
+    - name: servicearea
+      type: STRING
+    - name: payercode
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    cluster_by:
+    - payercode
+    - servicearea
+  - table: dmpayment
+    expect_object_type: TABLE
+    columns:
+    - name: facilityid
+      type: INT64
+    - name: financialclasscode
+      type: STRING
+    - name: placementpayor
+      type: STRING
+    - name: paymentpostingperiod
+      type: DATETIME
+    - name: department
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: paymentpostingperiod
+    cluster_by:
+    - placementpayor
+    - department
+    - financialclasscode
+  - table: dmreferrals
+    expect_object_type: TABLE
+    columns:
+    - name: facilityid
+      type: INT64
+    - name: placementdate
+      type: DATETIME
+    - name: currentfinancialclass
+      type: STRING
+    - name: currentpayor
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: placementdate
+    cluster_by:
+    - currentfinancialclass
+    - currentpayor
+  - table: dmreferrals_spc_analytics
+    expect_object_type: TABLE
+    columns:
+    - name: facilityid
+      type: STRING
+    - name: placementdate
+      type: DATETIME
+    - name: currentfinancialclass
+      type: STRING
+    - name: currentpayor
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: placementdate
+    cluster_by:
+    - currentfinancialclass
+    - currentpayor
+  - table: dmtouchevents
+    expect_object_type: TABLE
+    columns:
+    - name: accountheaderid
+      type: INT64
+    - name: createddate
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: createddate
+    cluster_by:
+    - accountheaderid
+  - table: dmtransaction
+    expect_object_type: TABLE
+    columns:
+    - name: accountnumber
+      type: STRING
+    - name: invoicecreationperiod
+      type: DATETIME
+    - name: placementfinancialclass
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: invoicecreationperiod
+    cluster_by:
+    - placementfinancialclass
+    - accountnumber
+  - table: dmweeklyreport
+    expect_object_type: TABLE
+    columns:
+    - name: weekdate
+      type: DATETIME
+    - name: tag
+      type: STRING
+    - name: community
+      type: STRING
+    - name: organizationgroupid
+      type: STRING
+    partition_by: weekdate
+    cluster_by:
+    - tag
+    - community
+  - table: factkpimonthend
+    expect_object_type: TABLE
+    columns:
+    - name: placementpayor
+      type: STRING
+    - name: department
+      type: STRING
+    - name: providername
+      type: STRING
+    - name: invoicecreationperiod
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: invoicecreationperiod
+    cluster_by:
+    - placementpayor
+    - department
+    - providername
+  - table: tb_factkpimonthend
+    expect_object_type: TABLE
+    columns:
+    - name: placementpayor
+      type: STRING
+    - name: department
+      type: STRING
+    - name: providername
+      type: STRING
+    - name: invoicecreationperiod
+      type: DATETIME
+    - name: organizationgroupid
+      type: STRING
+    partition_by: invoicecreationperiod
+    cluster_by:
+    - placementpayor
+    - department
+    - providername

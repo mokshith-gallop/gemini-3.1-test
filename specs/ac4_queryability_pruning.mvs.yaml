@@ -1,0 +1,483 @@
+name: ac4_queryability_pruning
+connections:
+  target:
+    engine: bigquery
+migration:
+  build_datasets:
+  - raw_billing
+  - gold_analytics
+  steps:
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_ba_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_ba_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_div_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_div_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_fsc_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_fsc_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_hosp_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_hosp_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_lacphy.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_insurance_lacphy_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_invoice.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_invoice_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_invoice.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_invoice_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_os.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_os_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_paycode_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_paycode_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_rejection.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_rejection_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_txn.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_mh_txn_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_txn.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_lac_txn_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_linepay.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_linepay_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_loc_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_loc_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_hosp_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_hosp_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_prov_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_mh_prov_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_osar.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_osar_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_patients.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_patients_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_paycode_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_paycode_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_prov_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_prov_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_refphy_dict.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_refphy_dict_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_rejection.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/idx_stg_rejection_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/lac_phy_idx_stg_insurance.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/lac_phy_idx_stg_insurance_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_araccountheader.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_aradjustments.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_ardenial.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_arpayments.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/stg_receivedfiles_metadata.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tbldialeraccountdtl.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tblsubaccount_lacpb.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/tbluseractivitynotes_lacpb.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_archive.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_mh.sql
+  - kind: ddl
+    sql: sql/ds_raw_billing/transactionedits_lacphy_mh_archive.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/araccountheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/aradjustments.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/arcurrentinventory.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/ardenial.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/arpayments.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/billingheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/holdbillheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/tbluseractivitynotes.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmadjustment.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmbillingheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcharges.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcurrentinventory.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmcurrentinventorydaywise.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmdenial.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmdenialdetails.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmholdbillheader.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmkpimonthend.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmoutboundlaccashposting.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmpayment.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmreferrals.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmreferrals_spc_analytics.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmtouchevents.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmtransaction.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/dmweeklyreport.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/factkpimonthend.sql
+  - kind: ddl
+    sql: sql/ds_gold_analytics/tb_factkpimonthend.sql
+suites:
+- pattern: query_performance
+  id: ac4-queryability-pruning
+  queries:
+  - id: smoke-idx_stg_ba_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_ba_dict LIMIT 0
+  - id: smoke-idx_stg_ba_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_ba_dict_archive LIMIT 0
+  - id: smoke-idx_stg_div_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_div_dict LIMIT 0
+  - id: smoke-idx_stg_div_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_div_dict_archive LIMIT 0
+  - id: smoke-idx_stg_fsc_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_fsc_dict LIMIT 0
+  - id: smoke-idx_stg_fsc_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_fsc_dict_archive LIMIT 0
+  - id: smoke-idx_stg_hosp_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_hosp_dict LIMIT 0
+  - id: smoke-idx_stg_hosp_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_hosp_dict_archive LIMIT 0
+  - id: smoke-idx_stg_insurance_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_insurance_dict LIMIT 0
+  - id: smoke-idx_stg_insurance_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_insurance_dict_archive LIMIT 0
+  - id: smoke-idx_stg_insurance_lacphy
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_insurance_lacphy LIMIT 0
+  - id: smoke-idx_stg_insurance_lacphy_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_insurance_lacphy_archive LIMIT 0
+  - id: smoke-idx_stg_invoice
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_invoice LIMIT 0
+  - id: smoke-idx_stg_invoice_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_invoice_archive LIMIT 0
+  - id: smoke-idx_stg_lac_mh_invoice
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_invoice LIMIT 0
+  - id: smoke-idx_stg_lac_mh_invoice_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_invoice_archive LIMIT 0
+  - id: smoke-idx_stg_lac_mh_os
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_os LIMIT 0
+  - id: smoke-idx_stg_lac_mh_os_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_os_archive LIMIT 0
+  - id: smoke-idx_stg_lac_mh_paycode_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_paycode_dict LIMIT 0
+  - id: smoke-idx_stg_lac_mh_paycode_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_paycode_dict_archive LIMIT 0
+  - id: smoke-idx_stg_lac_mh_rejection
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_rejection LIMIT 0
+  - id: smoke-idx_stg_lac_mh_rejection_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_rejection_archive LIMIT 0
+  - id: smoke-idx_stg_lac_mh_txn
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_txn LIMIT 0
+  - id: smoke-idx_stg_lac_mh_txn_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_mh_txn_archive LIMIT 0
+  - id: smoke-idx_stg_lac_txn
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_txn LIMIT 0
+  - id: smoke-idx_stg_lac_txn_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_lac_txn_archive LIMIT 0
+  - id: smoke-idx_stg_linepay
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_linepay LIMIT 0
+  - id: smoke-idx_stg_linepay_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_linepay_archive LIMIT 0
+  - id: smoke-idx_stg_loc_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_loc_dict LIMIT 0
+  - id: smoke-idx_stg_loc_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_loc_dict_archive LIMIT 0
+  - id: smoke-idx_stg_mh_hosp_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_mh_hosp_dict LIMIT 0
+  - id: smoke-idx_stg_mh_hosp_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_mh_hosp_dict_archive LIMIT 0
+  - id: smoke-idx_stg_mh_prov_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_mh_prov_dict LIMIT 0
+  - id: smoke-idx_stg_mh_prov_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_mh_prov_dict_archive LIMIT 0
+  - id: smoke-idx_stg_osar
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_osar LIMIT 0
+  - id: smoke-idx_stg_osar_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_osar_archive LIMIT 0
+  - id: smoke-idx_stg_patients
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_patients LIMIT 0
+  - id: smoke-idx_stg_patients_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_patients_archive LIMIT 0
+  - id: smoke-idx_stg_paycode_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_paycode_dict LIMIT 0
+  - id: smoke-idx_stg_paycode_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_paycode_dict_archive LIMIT 0
+  - id: smoke-idx_stg_prov_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_prov_dict LIMIT 0
+  - id: smoke-idx_stg_prov_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_prov_dict_archive LIMIT 0
+  - id: smoke-idx_stg_refphy_dict
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_refphy_dict LIMIT 0
+  - id: smoke-idx_stg_refphy_dict_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_refphy_dict_archive LIMIT 0
+  - id: smoke-idx_stg_rejection
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_rejection LIMIT 0
+  - id: smoke-idx_stg_rejection_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.idx_stg_rejection_archive LIMIT 0
+  - id: smoke-lac_phy_idx_stg_insurance
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.lac_phy_idx_stg_insurance LIMIT 0
+  - id: smoke-lac_phy_idx_stg_insurance_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.lac_phy_idx_stg_insurance_archive LIMIT 0
+  - id: smoke-stg_araccountheader
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.stg_araccountheader LIMIT 0
+  - id: smoke-stg_aradjustments
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.stg_aradjustments LIMIT 0
+  - id: smoke-stg_ardenial
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.stg_ardenial LIMIT 0
+  - id: smoke-stg_arpayments
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.stg_arpayments LIMIT 0
+  - id: smoke-stg_receivedfiles_metadata
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.stg_receivedfiles_metadata LIMIT 0
+  - id: smoke-tbldialeraccountdtl
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.tbldialeraccountdtl LIMIT 0
+  - id: smoke-tblsubaccount_lacpb
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.tblsubaccount_lacpb LIMIT 0
+  - id: smoke-tbluseractivitynotes_lacpb
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.tbluseractivitynotes_lacpb LIMIT 0
+  - id: smoke-transactionedits_lacphy
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.transactionedits_lacphy LIMIT 0
+  - id: smoke-transactionedits_lacphy_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.transactionedits_lacphy_archive LIMIT 0
+  - id: smoke-transactionedits_lacphy_mh
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.transactionedits_lacphy_mh LIMIT 0
+  - id: smoke-transactionedits_lacphy_mh_archive
+    mode: measure
+    sql: SELECT * FROM `${DS_RAW_BILLING}`.transactionedits_lacphy_mh_archive LIMIT 0
+  - id: smoke-araccountheader
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.araccountheader LIMIT 0
+  - id: smoke-aradjustments
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.aradjustments LIMIT 0
+  - id: smoke-arcurrentinventory
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.arcurrentinventory LIMIT 0
+  - id: smoke-ardenial
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.ardenial LIMIT 0
+  - id: smoke-arpayments
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.arpayments LIMIT 0
+  - id: smoke-billingheader
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.billingheader LIMIT 0
+  - id: smoke-holdbillheader
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.holdbillheader LIMIT 0
+  - id: smoke-tbluseractivitynotes
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.tbluseractivitynotes LIMIT 0
+  - id: smoke-dmadjustment
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmadjustment LIMIT 0
+  - id: smoke-dmbillingheader
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmbillingheader LIMIT 0
+  - id: smoke-dmcharges
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmcharges LIMIT 0
+  - id: smoke-dmcurrentinventory
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmcurrentinventory LIMIT 0
+  - id: smoke-dmcurrentinventorydaywise
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmcurrentinventorydaywise LIMIT 0
+  - id: smoke-dmdenial
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmdenial LIMIT 0
+  - id: smoke-dmdenialdetails
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmdenialdetails LIMIT 0
+  - id: smoke-dmholdbillheader
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmholdbillheader LIMIT 0
+  - id: smoke-dmkpimonthend
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmkpimonthend LIMIT 0
+  - id: smoke-dmoutboundlaccashposting
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmoutboundlaccashposting LIMIT 0
+  - id: smoke-dmpayment
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmpayment LIMIT 0
+  - id: smoke-dmreferrals
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmreferrals LIMIT 0
+  - id: smoke-dmreferrals_spc_analytics
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmreferrals_spc_analytics LIMIT 0
+  - id: smoke-dmtouchevents
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmtouchevents LIMIT 0
+  - id: smoke-dmtransaction
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmtransaction LIMIT 0
+  - id: smoke-dmweeklyreport
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.dmweeklyreport LIMIT 0
+  - id: smoke-factkpimonthend
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.factkpimonthend LIMIT 0
+  - id: smoke-tb_factkpimonthend
+    mode: measure
+    sql: SELECT * FROM `${DS_GOLD_ANALYTICS}`.tb_factkpimonthend LIMIT 0
+  - id: prune-factkpimonthend
+    mode: compare
+    a:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.factkpimonthend
+    b:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.factkpimonthend WHERE invoicecreationperiod >= DATETIME('2020-01-01')
+    compare:
+      bytes_scanned: b <= a
+  - id: prune-dmadjustment
+    mode: compare
+    a:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmadjustment
+    b:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmadjustment WHERE adjustmentdate >= DATETIME('2020-01-01')
+    compare:
+      bytes_scanned: b <= a
+  - id: prune-dmpayment
+    mode: compare
+    a:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmpayment
+    b:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmpayment WHERE paymentpostingperiod >= DATETIME('2020-01-01')
+    compare:
+      bytes_scanned: b <= a
+  - id: prune-dmcharges
+    mode: compare
+    a:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmcharges
+    b:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmcharges WHERE servicefromdate >= DATETIME('2020-01-01')
+    compare:
+      bytes_scanned: b <= a
+  - id: prune-dmdenial
+    mode: compare
+    a:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmdenial
+    b:
+      sql: SELECT COUNT(*) AS n FROM `${DS_GOLD_ANALYTICS}`.dmdenial WHERE denieddate >= DATETIME('2020-01-01')
+    compare:
+      bytes_scanned: b <= a
