@@ -1,0 +1,41 @@
+CREATE SCHEMA IF NOT EXISTS `${DS_RAW_BILLING}`;
+CREATE TABLE IF NOT EXISTS `${DS_RAW_BILLING}`.idx_stg_rejection (
+  filename STRING,
+  filedate STRING,
+  mrn STRING,
+  inv_num STRING,
+  orig_inv_num STRING,
+  orig_fsc_2 STRING,
+  fsc_at_payment_2 STRING,
+  txn_num STRING,
+  proc_2 STRING,
+  tot_chg STRING,
+  inv_bal STRING,
+  chg_amt STRING,
+  ser_dt STRING,
+  post_dt STRING,
+  rej_check_dt STRING,
+  post_pd STRING,
+  pay_code_2 STRING,
+  mod_1 STRING,
+  mod_2 STRING,
+  mod_3 STRING,
+  units STRING,
+  rvu STRING,
+  rvu_work_comp STRING,
+  rej_4_1 STRING,
+  rej_1_1 STRING,
+  rej_2_1 STRING,
+  rej_3_1 STRING,
+  grp_2 STRING,
+  rej_remark STRING,
+  rej_mess STRING,
+  additional1 STRING,
+  additional2 STRING,
+  additional3 STRING,
+  additional4 STRING,
+  additional5 STRING
+)
+OPTIONS (
+  description='Migrated from shc_incomingphysician.idx_stg_rejection'
+);

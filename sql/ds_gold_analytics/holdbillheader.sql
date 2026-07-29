@@ -1,0 +1,47 @@
+CREATE SCHEMA IF NOT EXISTS `${DS_GOLD_ANALYTICS}`;
+CREATE TABLE IF NOT EXISTS `${DS_GOLD_ANALYTICS}`.holdbillheader (
+  holdbillid INT64,
+  billingheaderid INT64,
+  patientid INT64,
+  payercode STRING,
+  financialclasscode STRING,
+  organizationname STRING,
+  facilityname STRING,
+  serviceprovidername STRING,
+  department STRING,
+  mrn STRING,
+  accountnumber STRING,
+  servicefromdate DATETIME,
+  servicetodate DATETIME,
+  holdbillcreateddate DATETIME,
+  holdbillupdateddate DATETIME,
+  holdbilldeleteddate DATETIME,
+  holdbilldeletedby STRING,
+  tag STRING,
+  totalchargeamount NUMERIC,
+  holdbalance NUMERIC,
+  accountreceivablebalance NUMERIC,
+  holdbillcode STRING,
+  holdbillreason STRING,
+  createdby STRING,
+  createddate DATETIME,
+  modifiedby STRING,
+  modifieddate DATETIME,
+  recordstartdate DATETIME,
+  recordenddate DATETIME,
+  table_name STRING,
+  edit2 STRING,
+  edit3 STRING,
+  holdbillreasoncohort STRING,
+  division STRING,
+  servicearea STRING,
+  region STRING,
+  provision STRING,
+  specialty STRING,
+  organizationgroupid STRING,
+  batch_id STRING
+)
+PARTITION BY DATE(holdbillcreateddate)
+OPTIONS (
+  description='Migrated from shc_gold.holdbillheader'
+);
